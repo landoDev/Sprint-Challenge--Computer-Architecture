@@ -96,13 +96,19 @@ class CPU:
         self.pc += 3
     def JMP(self, operand_a, operand_b):
         # which one is the given register? operand a?
+        print(self.reg[operand_a])
         self.pc = self.reg[operand_a]
     def JNE(self, operand_a, operand_b):
         if self.FL != 0b00000001:
             self.pc = self.reg[operand_a]
+        # not incrementing counter! Might be cause of infinite loop
+        else:
+            self.pc += 2
     def JEQ(self, operand_a, operand_b):
         if self.FL == 0b00000001:
             self.pc = self.reg[operand_a]
+        else:
+            self.pc += 2
 
     def load(self, filename):
         """Load a program into memory."""
