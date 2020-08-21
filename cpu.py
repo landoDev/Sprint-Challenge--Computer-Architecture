@@ -12,6 +12,10 @@ class CPU:
         self.op_size = 1
         self.running = True
 
+        # initalize flag
+                # 0b00000LGE
+        self.FL = 0b00000000
+
         # branchtable
         self.branchtable = {
             0b00000001: self.HLT,
@@ -22,7 +26,11 @@ class CPU:
             0b01000101: self.PUSH,
             0b01000110: self.POP,
             0b01010000: self.CALL,
-            0b00010001: self.RET
+            0b00010001: self.RET,
+            0b10100111: self.CMP,
+            0b01010100: self.JMP,
+            0b01010101: self.JEQ,
+            0b01010110: self.JNE
         }
 
     def ram_read(self, MAR):
