@@ -95,11 +95,14 @@ class CPU:
         self.alu("CMP", operand_a, operand_b)
         self.pc += 3
     def JMP(self, operand_a, operand_b):
-        pass
+        # which one is the given register? operand a?
+        self.pc = self.reg[operand_a]
     def JNE(self, operand_a, operand_b):
-        pass
+        if self.FL != 0b00000001:
+            self.pc = self.reg[operand_a]
     def JEQ(self, operand_a, operand_b):
-        pass
+        if self.FL == 0b00000001:
+            self.pc = self.reg[operand_a]
 
     def load(self, filename):
         """Load a program into memory."""
